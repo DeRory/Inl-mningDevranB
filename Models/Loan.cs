@@ -10,9 +10,6 @@ namespace EFProjects.Models
 
         public Book? Book {get; set;}
 
-
-
-
         public DateTime LoanDate {get; set;}
 
         public DateTime ReturnDate {get; set;}
@@ -21,12 +18,6 @@ namespace EFProjects.Models
 
         public string SocialNumber {get; set;}
 
-
-
     }
-
-
-
-
 
 }
