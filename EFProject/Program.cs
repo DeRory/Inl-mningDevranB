@@ -4,12 +4,24 @@ using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.Extensibility;
 using System;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
 
 
 class Program
 {
     static void Main(string[] args)
     {
+
+        using (var context = new AppDBContext())
+        {
+            //Run migrations and create the database if it does not exist
+            context.Database.Migrate();
+
+            //The seed data when initiating the database
+            SeedData.Initialize(context);
+        }
+
+
         bool meny = false;
         while (!meny)
         {
