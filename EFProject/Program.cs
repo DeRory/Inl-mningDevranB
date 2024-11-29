@@ -4,6 +4,7 @@ using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.Extensibility;
 using System;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 

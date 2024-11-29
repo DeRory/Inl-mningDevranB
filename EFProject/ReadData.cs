@@ -10,8 +10,8 @@ public class ReadData
     using (var context = new AppDBContext())
     {
         var books = context.Books
-            .Include(b => b.BookAuthors) // Inkludera relationen till BookAuthors
-            .ThenInclude(ba => ba.Author) // Inkludera Author i BookAuthors
+            .Include(b => b.BookAuthors) // include relation to bookauhtor
+            .ThenInclude(ba => ba.Author) // include author in bookauthor
             .ToList();
 
         if (books.Any())
@@ -41,7 +41,7 @@ public class ReadData
     using (var context = new AppDBContext())
     {
         var loans = context.Loans
-            .Include(l => l.Book) // Inkludera relationen till Book
+            .Include(l => l.Book) // include relation to bookauthor
             .ToList();
 
         if (loans.Any())
@@ -49,7 +49,7 @@ public class ReadData
             Console.WriteLine("Borrowed books and their return dates:");
             foreach (var loan in loans)
             {
-                var returnDate = loan.LoanDate.AddDays(30); // Anta att återlämning är efter 14 dagar
+                var returnDate = loan.LoanDate.AddDays(30); 
                 Console.WriteLine($"Book: {loan.Book.Title}, Borrower: {loan.BorrowerName}, Return Date: {returnDate.ToShortDateString()}");
             }
         }
