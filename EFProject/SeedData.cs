@@ -15,6 +15,7 @@ public static class SeedData
                 new Author { Name = "George R.R. Martin" },
                 new Author { Name = "J.R.R. Tolkien" },
                 new Author { Name = "E. Aladdin" }
+                // ny exempel
             );
         }
 

@@ -15,7 +15,7 @@ class Program
 
         using (var context = new AppDBContext())
         {
-            //Run migrations and create the database if it does not exist
+            //Run migrations and create the database if it does not exist --- fråga aladdin om detta behövs
             context.Database.Migrate();
 
             //The seed data when initiating the database
@@ -36,51 +36,60 @@ class Program
             Console.WriteLine("7. Delete Author");
             Console.WriteLine("8. Delete Book");
             Console.WriteLine("9. Delete Loan");
-            Console.WriteLine("10. Exit");
+            Console.WriteLine("10. List all books by a specific author");
+            Console.WriteLine("11. List all authors of a specific book");
+            Console.WriteLine("12. Show loan history");
+            Console.WriteLine("13. Exit");
+
 
             var input = Console.ReadLine();
 
             switch (input)
             {
                 case "1":
-                    AddData.AddAuthor();  // Add author
+                    AddData.AddAuthor();
                     break;
                 case "2":
-                    AddData.AddBook();  // Add book
+                    AddData.AddBook();
                     break;
                 case "3":
-                    AddData.AddBookAuthorRelation();  // Add relation between book and author
+                    AddData.AddBookAuthorRelation();
                     break;
                 case "4":
-                    AddData.AddLoan();  // Add loan
+                    AddData.AddLoan();
                     break;
                 case "5":
-                    // List books and their authors
                     ReadData.ListBooksAndAuthors();
                     break;
                 case "6":
-                    // List borrowed books and their return dates
                     ReadData.ListBorrowedBooks();
                     break;
                 case "7":
-                    // Delete author
                     DeleteData.DeleteAuthor();
                     break;
                 case "8":
-                    // Delete book
                     DeleteData.DeleteBook();
                     break;
                 case "9":
-                    // Delete loan
                     DeleteData.DeleteLoan();
                     break;
                 case "10":
-                    meny = true;  // Ends the programme
+                    ReadData.ListBooksByAuthor();
+                    break;
+                case "11":
+                    ReadData.ListAuthorsByBook();
+                    break;
+                case "12":
+                    ReadData.ShowLoanHistory();
+                    break;
+                case "13":
+                    meny = true;
                     break;
                 default:
                     Console.WriteLine("Invalid option.");
                     break;
             }
+
         }
     }
 }

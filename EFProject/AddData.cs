@@ -59,7 +59,6 @@ public class AddData
         using (var context = new AppDBContext())
         {
 
-
             System.Console.WriteLine("Enter the book ID to associate it with an author of your choice: ");
             int bookID = int.Parse(Console.ReadLine());
 
