@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using EFProjects.Models; 
+using EFProjects.Models;
 
 public class DeleteData
 {
@@ -15,8 +15,8 @@ public class DeleteData
             var author = context.Authors.Find(authorId);
             if (author != null)
             {
-                context.Authors.Remove(author); 
-                context.SaveChanges();  
+                context.Authors.Remove(author);
+                context.SaveChanges();
                 Console.WriteLine($"Author '{author.Name}' has been deleted.");
             }
             else
@@ -36,8 +36,8 @@ public class DeleteData
             var book = context.Books.Find(bookId);
             if (book != null)
             {
-                context.Books.Remove(book); 
-                context.SaveChanges();  
+                context.Books.Remove(book);
+                context.SaveChanges();
                 Console.WriteLine($"Book '{book.Title}' has been deleted.");
             }
             else
@@ -57,8 +57,8 @@ public class DeleteData
             var loan = context.Loans.Find(loanId);
             if (loan != null)
             {
-                context.Loans.Remove(loan);  
-                context.SaveChanges();  
+                context.Loans.Remove(loan);
+                context.SaveChanges();
                 Console.WriteLine($"Loan with ID '{loanId}' has been deleted.");
             }
             else

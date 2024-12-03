@@ -6,9 +6,10 @@ namespace EFProjects.Models
     public class BookAuthor
     {
         
-        public int Id{get; set;}
+        public int ID{get; set;}
         public int BookID {get; set;} //Foreign key to book
         public Book? Book {get; set;} 
+
 
 
         public int AuthorID {get; set;} //Foreign key to Author

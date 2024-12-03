@@ -59,14 +59,37 @@ public class AddData
         using (var context = new AppDBContext())
         {
 
-            System.Console.WriteLine("Enter the book ID to associate it with an author of your choice: ");
-            int bookID = int.Parse(Console.ReadLine());
+            Console.WriteLine("Available Books:");
+            foreach (var listedBook in context.Books.ToList())
+            {
+                Console.WriteLine($"ID: {listedBook.ID}, Title: {listedBook.Title}, Published Year: {listedBook.PublishedYear}, Genre: {listedBook.Genre}");
+            }
 
-            System.Console.WriteLine("Enter author ID to associate it with the book");
-            int authorID = int.Parse(Console.ReadLine());
+            Console.WriteLine("\nAvailable Authors:");
+            foreach (var listedAuthor in context.Authors.ToList())
+            {
+                Console.WriteLine($"ID: {listedAuthor.ID}, Name: {listedAuthor.Name}");
+            }
 
-            var book = context.Books.Find(bookID); //Finds the book
-            var author = context.Authors.Find(authorID); //Finds the author
+
+            Console.WriteLine("\nEnter the Book ID to associate it with an Author of your choice: ");
+            if (!int.TryParse(Console.ReadLine(), out int bookID))
+            {
+                Console.WriteLine("Invalid Book ID. Please enter a number.");
+                return;
+            }
+
+
+            Console.WriteLine("Enter Author ID to associate it with the Book: ");
+            if (!int.TryParse(Console.ReadLine(), out int authorID))
+            {
+                Console.WriteLine("Invalid Author ID. Please enter a number.");
+                return;
+            }
+
+            // finds the book and author in the database via the Find method
+            var book = context.Books.Find(bookID);
+            var author = context.Authors.Find(authorID);
 
             if (book != null && author != null)
             {
@@ -76,16 +99,15 @@ public class AddData
                     AuthorID = authorID
                 };
 
-                context.BookAuthors.Add(bookAuthor); //Adds the relation between book and author into the database
+                context.BookAuthors.Add(bookAuthor);
                 context.SaveChanges();
 
-                System.Console.WriteLine($"Great! The book '{book.Title}' has been associated with Author '{author.Name}'.");
+                Console.WriteLine($"\nGreat! The book '{book.Title}' has been associated with Author '{author.Name}'.");
             }
             else
             {
-                System.Console.WriteLine("Either the book or author was not found");
+                Console.WriteLine("\nEither the book or author was not found. Please verify the IDs and try again.");
             }
-
         }
 
     }
